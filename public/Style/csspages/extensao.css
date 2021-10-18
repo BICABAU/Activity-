@@ -1,0 +1,444 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css");
+.fadeIn {
+    animation: fadeIn 1s linear;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.navbar-logo a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.topbar {
+    left: 0;
+    position: relative;
+    right: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.topbar .topbar-left {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 70px;
+    position: relative;
+    width: 240px;
+    z-index: 1;
+    background-color: #60d09d;
+}
+
+.navbar {
+    padding: 0px 16px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-green);
+    color: var(--color-text-primary);
+}
+
+.sidenav-open {
+    margin-left: -16px;
+    background-color: #54cc96;
+    color: #fff;
+    width: 60px;
+    border: none;
+    line-height: 68px;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    font-size: 32px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-menu .input {
+    outline: none;
+    padding: 12px 12px 12px 42px;
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+    color: #ffffff;
+}
+
+.navbar-menu .menu-icon {
+    position: absolute;
+    padding: 15px;
+}
+
+.navbar-menu .menu-icon a {
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.navbar-menu .input::placeholder {
+    color: var(--color-text-primary);
+}
+
+.sidenav-horas span {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: var(--color-greentext);
+    font-weight: 600;
+    margin-bottom: 16px;
+    margin-left: 25px;
+}
+
+.sidenav-horas .progress-bar {
+    margin-top: 12px;
+    width: 80%;
+    margin-left: 22px;
+    padding: 2px 2px;
+    background-color: rgba(84, 204, 150, 0.30);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+    display: flex;
+}
+
+.sidenav-horas .progress-bar::before {
+    content: "";
+    width: 25%;
+    height: 6px;
+    border-radius: 1px;
+    background-color: #54CC96;
+}
+
+.atividades {
+    padding: 32px;
+}
+
+.atividades .atividades-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    grid-gap: 120px;
+}
+
+
+/* #atividades-de-extensao {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+}
+ */
+
+.sidenav {
+    padding-top: 70px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    color: #4e4a4a;
+    transition: 0.5s;
+    box-shadow: 2px 2px 30px rgba(151, 151, 151, 0.13);
+}
+
+.closebtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidenav-text {
+    margin-top: 32px;
+    margin-left: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var( --color-graytext);
+}
+
+.closebtn button {
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    background-color: rgba(37, 148, 79, 0.178);
+    border: 1px solid rgba(37, 148, 79, 0.178);
+    cursor: pointer;
+    outline: none;
+}
+
+.closebtn i {
+    color: #4e4a4a;
+    font-size: 28px;
+    padding: 8px;
+}
+
+.sidenav ul li {
+    list-style: none;
+    border-radius: 10px;
+    margin: 20px 15px;
+}
+
+.sidenav ul li a {
+    display: block;
+    padding: 12px;
+    color: #666666;
+    font-size: 14px;
+    border: 1px solid rgba(37, 148, 79, 0.11);
+    background-color: rgba(37, 148, 79, 0.034);
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.sidenav ul li a:hover {
+    background-color: rgba(37, 148, 79, 0.178);
+    border: 1px solid rgba(37, 148, 79, 0.178);
+    transition: all 0.3s;
+}
+
+.sidenav ul li .btn-sair {
+    border: 1px solid rgba(255, 140, 140, 0.089);
+    background-color: rgba(255, 140, 140, 0.103);
+}
+
+.sidenav ul li .btn-sair:hover {
+    border: 1px solid rgba(255, 140, 140, 0.192);
+    background-color: rgba(255, 140, 140, 0.178);
+}
+
+.linha {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(165, 165, 165, 0.178);
+}
+
+.lista-atividades {
+    width: 100%;
+}
+
+.lista-atividades .atividades-titulos {
+    margin-bottom: 24px;
+}
+
+.lista-atividades .atividades-titulos h2 {
+    color: var(--color-greentext);
+    font-size: 28px;
+    font-weight: 800;
+    padding-bottom: 20px;
+}
+
+.lista-atividades .atividades-titulos h4 {
+    margin-top: 30px;
+    color: #4e4a4a;
+}
+
+.text-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bxs-folder-open {
+    margin-right: 10px;
+}
+
+.calendar-icon .bx-calendar {
+    margin-left: 20px;
+    color: white;
+    font-size: 20px;
+}
+
+.profile-icon .bx-face {
+    margin-left: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.accordion {
+    display: flex;
+    margin: 11px 0, 0 0;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    padding: 12px 18px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(37, 148, 79, 0.178);
+    text-align: left;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.active,
+.accordion:hover {
+    background-color: rgba(37, 148, 79, 0.178);
+}
+
+.active,
+.accordion:hover {
+    background-color: rgba(37, 148, 79, 0.178);
+}
+
+.panel {
+    margin: 8px 0;
+    padding: 0 16px;
+    display: none;
+    background-color: var(--color-panel-background);
+    color: var(--color-text-secondary);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.panel button {
+    border: none;
+    background-color: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-box button {
+    background-color: var(--color-green);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+    padding: 12px 38px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.btn-box button:hover {
+    background-color: var(--color-greenhover);
+}
+
+.btn-download {
+    background-color: var(--color-green);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+    padding: 12px 16px;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.btn-download:hover {
+    background-color: var(--color-greenhover);
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview img {
+    margin-top: 70px;
+    width: 180px;
+    border: 1px solid rgba(255, 140, 140, 0.178);
+    border-radius: 8px;
+}
+
+.preview span {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.mostrar {
+    display: flex;
+}
+
+.modal {
+    background: var(--color-modal-background);
+    width: 60%;
+    min-width: 300px;
+    padding: 40px;
+    border: 8px solid gray;
+    box-shadow: 0 0 0 10px white;
+    position: relative;
+}
+
+.form-modal input {
+    width: 50%;
+    margin-bottom: 25px;
+}
+
+.form-modal input[type="number"] {
+    width: 30%;
+}
+
+.form-modal button {
+    width: 50%;
+}
+
+.fechar {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 40%;
+    outline: none;
+    cursor: pointer;
+}
+
+.conteudo-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}

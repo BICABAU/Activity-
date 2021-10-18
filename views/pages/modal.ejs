@@ -1,0 +1,30 @@
+<div id="modal-upload" class="modal-container">
+    <div class="modal">
+        <button class="fechar">X</button>
+        <h3>
+            Insira os dados abaixo para realizar o upload dos certificados
+        </h3>
+        <form action="/upload" class="form-modal" method="POST" enctype="multipart/form-data">
+            <label for="">Insira o arquivo abaixo:</label>
+            <input type="file" name="certificados" id="certificados" />
+            <label for="">Insira a quantidade de horas que você deseja
+        contabilizar:</label>
+            <input type="number" name="qtd_horas" id="qtd_horas" />
+            <label for="tipo_de_atividade">Indique o tipo de atividade</label>
+            <select name="tipo_de_atividade" id="tipo_de_atividade">
+                <option value="Atividades Complementares">Atividades Complementares</option>
+                <option value="Atividades de Extensão">Atividades de Extensão</option>
+            </select>
+            <label for="categoria_atividade">Indique a categoria dessa atividade</label>
+            <select name="categoria_atividade" id="categoria_atividade">
+                <option value="Curso">Curso</option>
+            </select>
+            <label for="subcategoria_atividade">Insira a subcategoria</label>
+            <select name="subcategoria_atividade" id="subcategoria_atividade">
+                <option value="?">?</option>
+            </select>
+            <button>Clique aqui para realizar o upload</button>
+        </form>
+    </div>
+</div>
+</section>

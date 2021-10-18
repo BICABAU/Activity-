@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300&display=swap");
+@import url("https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css");
+
+:root {
+    --color-sidenav-primary: #247159;
+    --color-sidenav-secondary: #1C5E48;
+    --color-progressbar-primary: #247159;
+    --color-accoridon-background: #FFF;
+    --color-button-backgroud: #1C5E48;
+    --color-buttonhover-backgroud: #ccc;
+    --color-buttonactive-secondary: #1C5E48;
+    --color-hover-background: #cfcccc;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #222222;
+    --color-text-secondary-light: #333333;
+    --color-form-primary: #ffffff;
+    --color-panel-background: #fff;
+    --color-preview-border: #f15a32;
+    --color-modal-background: #FFF;
+    --color-input-background: #44967c70;
+    --color-inputplaceholder-background: #000000;
+    --color-hamburgerbutton-background: #44967c54;
+    --color-green: #54CC96;
+    --color-greenhover: #40a879;
+    --color-greenbackground: #54cc9652;
+    --color-red: #FB555E;
+    --color-redhover: #d44950;
+    --color-redbackground: #fb555d59;
+    font-size: 85%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body,
+input,
+button,
+textarea {
+    font-family: "Poppins", Verdana, Tahoma, sans-serif;
+}

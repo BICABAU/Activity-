@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar informações: Atividades Complementares</title>
+    <link rel="stylesheet" href="/Style/style.css" />
+    <link rel="stylesheet" href="/Style/csspages/mostrar_atividades.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="container_mostrar">
+        <% certificado.forEach(function(certificado){ %>
+            <div class="div_font">
+                <div class="background_mostrar_atividades">
+                    <div>
+                        <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
+                    </div>
+                    <div>
+                        <span>Divisão: <%=certificado.categoria_atividade %></span>
+                    </div>
+                    <div>
+                        <span>Nome: <%=certificado.chave%></span>
+                    </div>
+                    <div>
+                        <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
+                    </div>
+                    <div>
+                        <span>Tamanho do Documento: <%=certificado.tamanho %> kbs</span>
+                    </div>
+                </div>
+                <br>
+                    <div class="button_remover">
+                        <a
+                            href="/apagarCertificadoACs/<%= certificado.nome %>">
+                            <i class='bx bx-trash-alt'></i> <span>Deletar</span>
+                        </a>
+                    </div>
+                    <div class="button_sair">
+                        <a
+                            href="/atividadesComplementares">
+                            <i class='bx bx-arrow-back' ></i> <span>Voltar</span>
+                        </a>
+                    </div>
+                </div>
+                <% }); %>
+            </section>
+</body>
+</html>
+    

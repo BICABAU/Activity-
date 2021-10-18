@@ -1,0 +1,63 @@
+
+.container_mostrar{
+    display: flex;
+    width: 100vw;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.div_font{
+    font-size:20px;
+}
+
+.background_mostrar_atividades{
+    background-color: rgba(37, 148, 79, 0.178);
+    padding: 20px;
+    border-radius: 20px;
+    width: 29vw;
+    height: fit-content;
+}
+
+.button_remover{
+  
+    margin: 0px 0px 0px 160px;
+    border: solid 2px black;
+    align-items: center;
+    width: 30%;
+    padding: 10px 0px 0px 0px;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.button_sair{
+    margin: 10px 0px 0px 160px;
+    
+    align-items: center;
+    background-color: var(--color-green);
+    width: 30%;
+    padding: 10px 0px 0px 0px;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.button_sair:hover{
+    background-color: var(--color-greenhover);
+}
+
+.button_sair a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.button_remover:hover{
+    background-color: rgb(231, 229, 229);
+}
+
+.button_remover a{
+    color: black;
+    text-decoration: none;
+}
