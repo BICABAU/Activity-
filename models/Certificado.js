@@ -59,6 +59,34 @@ Certificado.prototype.readAllACs = function () {
     });
 }
 
+Certificado.prototype.readCatAes = function () {
+    const consulta = "SELECT * from aes"
+    return new Promise((resolve, reject) => {
+        pool.query(consulta, (error, results) => {
+            if (error) {
+                reject("Não foi possivel ler as categorias" + error)
+            } else {
+                resultado_categoria = results.rows
+                resolve(resultado_categoria)
+            }
+        })
+    })
+}
+
+Certificado.prototype.readCatAcs = function () {
+    const consulta = "SELECT * from acs"
+    return new Promise((resolve, reject) => {
+        pool.query(consulta, (error, results) => {
+            if (error) {
+                reject("Não foi possivel ler as categorias" + error)
+            } else {
+                resultado_categoria = results.rows
+                resolve(resultado_categoria)
+            }
+        })
+    })
+}
+
 Certificado.prototype.readAllAEs = function () {
     const consulta = "SELECT * FROM certificados u where u.email_fk=$1 and u.tipo_de_atividade='Atividades De Extensão'";
     const values = [this.email]

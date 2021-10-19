@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const Certificados = require('./models/Certificado');
 const multer = require('multer')
 const multerConfig = require('./config/multer')
 
@@ -38,7 +38,7 @@ router.get('/recuperarCursos', cursosController.recuperarCursos);
 
 //roteamento de post
 router.get('/postAcs', mustBeLoggedIn, postController.postACs)
-router.get('/postAcs', mustBeLoggedIn, postController.postAEs)
+router.get('/postAes', mustBeLoggedIn, postController.postAEs)
 router.post('/uploadACs', mustBeLoggedIn, multer(multerConfig).single('certificados'), certificadosAcsController.uploadsAcs);
 router.post('/uploadAEs', mustBeLoggedIn, multer(multerConfig).single('certificados'), certificadosAesController.uploadAes);
 

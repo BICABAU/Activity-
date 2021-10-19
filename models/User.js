@@ -59,8 +59,10 @@ User.prototype.create = function () {
 
 User.prototype.alterarDados = function () {
 
-    const consulta = "UPDATE users set nome=$1, nascimento=$2 WHERE email=$3";
-    const values = [this.data.nome, this.data.nascimento, this.data.email];
+    let salt = bcrypt.genSaltSync(10)
+    this.data.senha = bcrypt.hashSync(this.data.senha, salt)
+    const consulta = "UPDATE users set nome=$1, nascimento=$2, senha=$3 WHERE email=$4";
+    const values = [this.data.nome, this.data.nascimento, this.data.senha, this.data.email];
     console.log(consulta)
 
     return new Promise((resolve, reject) => {
