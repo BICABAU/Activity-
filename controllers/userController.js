@@ -1,8 +1,9 @@
+const TipoCurso = require('../models/TipoCurso')
 const User = require('../models/User')
 
 exports.cadastro = function (req, res) {
-    let user = new User()
-    user.recuperarTiposCursos()
+    let tipoCurso = new TipoCurso()
+    tipoCurso.recuperarTiposCursos()
         .then((tipos_cursos_recuperados) => {
             res.render('pages/cadastro', { tipos_cursos_recuperado: tipos_cursos_recuperados, layout: 'pages/cadastro' })
         })
