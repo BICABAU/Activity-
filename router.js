@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-// const Certificados = require('./models/Certificado');
+const Certificados = require('./models/Certificado');
+const date = new Date();
 const multer = require('multer')
 const multerConfig = require('./config/multer')
 
