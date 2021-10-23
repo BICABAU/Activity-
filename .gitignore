@@ -7,8 +7,6 @@ tmp/uploads/*
 yarn.lock
 package-lock.json
 
-tmp/uploads/*
-
 # local env files
 .env.local
 .env..local
