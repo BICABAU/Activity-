@@ -5,6 +5,7 @@ npm-debug.log
 .DS_Store
 tmp/uploads/*
 yarn.lock
+package-lock.json
 
 tmp/uploads/*
 
