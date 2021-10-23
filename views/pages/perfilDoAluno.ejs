@@ -1,0 +1,83 @@
+<%- contentFor('title') %>
+Perfil do Aluno
+<%- contentFor('main') %>
+    <section class="atividades">
+        <div class="atividades-de-extensao fonte caixa">
+            <div class="container-perfilDoAluno">
+                <form action="/alterarDados" method="POST">
+                    <div class="lista-atividades text-box">
+
+                        <div class="atividades-titulos">
+                            <h2>Perfil do Aluno</h2>
+
+                        </div>
+
+                        <div>
+                            <label for="">Nome</label>
+                            <input type="text" name="nome" id="nome" value="<%= user.nome %>">
+                        </div>
+                        <div>
+                            <label for="">Sobrenome</label>
+                            <input type="text" name="sobrenome" id="sobrenome" value="<%= user.sobrenome %>">
+                        </div>
+                        <div>
+                            <label for="">E-mail </label>
+                            <input type="text" name="email" id="email" value="<%= user.email %>">
+                        </div>
+                        <div>
+                            <label for="">CPF </label>
+                            <input type="text" name="cpf" id="cpf" value="<%= user.cpf %>">
+                        </div>
+                        <div>
+                            <label for="">Data de Nascimento </label>
+                            <input type="date" name="dataNascimento" id="dataNascimento" value="<%= user.nascimento %>"></div>
+
+                        <div>
+                            <label for="">Telefone </label>
+                            <input type="text" name="telefone" id="telefone" value=" <%= user.telefone %>">
+                        </div>
+                        <br>
+                        <div>
+                            <label for="">Instituição </label>
+                            <input type="text" name="instituicao" id="instituicao" value=" <%= user.instituicao %>"></div>
+                        <div>
+                            <label for="">Cidade </label>
+                            <input type="text" name="cidade" id="cidade" value=" <%= user.cidade %>">
+                        </div>
+                        <div>
+                            <label for="">Senha </label>
+                            <input type="password" name="senha" id="senha" value="<%= user.senha %>">
+                        </div>
+                        <br> <br>
+                        <div class="btn-save">
+                            <button type="submit">SALVAR ALTERAÇÕES</button>
+                        </div>
+                </form>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <div id="modal-upload" class="modal-container">
+            <div class="modal">
+                <button class="fechar">X</button>
+                <h3>
+                    Insira os dados abaixo para realizar o upload dos certificados
+                </h3>
+                <form action="" class="form-modal">
+                    <label for="">Insira o arquivo abaixo:</label>
+                    <input type="file" name="" id="" />
+                    <label for="">Insira a quantidade de horas que você deseja
+                contabilizar:</label
+              >
+              <input type="number" name="" id="" />
+              <button type="submit">Clique aqui para realizar o upload</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="javascript.js"></script>
+</body>
+
+</html>

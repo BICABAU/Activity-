@@ -1,0 +1,250 @@
+<%- contentFor('title') %>
+Atividades Complementares
+
+<%- contentFor('main') %>
+    <section class="atividades" id="main">
+        <div class="atividades-content">
+            <div class="conteudo-container">
+                <div class="lista-atividades">
+                    <div class="atividades-titulos">
+                        <h2>Atividades Extracurriculares</h2>
+                        <div class="btn-box">
+                            <a href="/postACs"><button>Registre uma nova atividade</button></a>
+                        </div>
+                       
+
+                    </div>
+
+                    <button class="accordion">
+                        <i class="bx bxs-folder-open"></i>Atividades De Ensino e Formação Profissional
+                    </button>
+                    <div class="panel">
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Disciplinas de Outra Graduação
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Disciplinas de Outra Graduação') {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Monitoria
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Monitoria' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Cursos de Idioma
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Cursos de Idioma' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Estagio
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Estagio' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Representação Estudantil
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Representação Estudantil' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                    </div>
+
+                    <button class="accordion">
+                        <i class="bx bxs-folder-open"></i>Atividades de Pesquisa
+                    </button>
+                    <div class="panel">
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Bolsista
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Bolsista' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Eventos Cientificos
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Eventos Cientificos' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Publicação de Artigo
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Publicação de Artigo' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                    </div>
+
+                    <button class="accordion">
+                        <i class="bx bxs-folder-open"></i>Atividades Outros
+                    </button>
+                    <div class="panel">
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Participação em Eventos Esportivos
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Participação em Eventos Esportivos' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Organização de Eventos Esportivos
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Organização de Eventos Esportivos' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                        <button class="accordion">
+                            <i class="bx bxs-folder-open"></i>Participação em Eventos Filantrópicos
+                        </button>
+                        <div class="panel">
+                            <% certificado.forEach(function(certificado){ %>
+                                <% if (certificado.subcategoria_atividade=='Participação em Eventos Filantrópicos' ) {%>
+                                    <div class="panel-documentos">
+                                        <div class="text-documents">
+                                            <span><i class='bx bxs-file-pdf'></i>
+                                                <%= certificado.chave %>
+                                            </span>
+                                            <span>
+                                                <%= certificado.criado_em %>
+                                            </span>
+                                            <a href="/mostrar_ac/<%= certificado.id_certificado %>"> <i class='bx bx-plus' ></i> Mais informações </a>
+                                        </div>
+                                    </div>
+                                    <% }}); %>
+                        </div>
+                    </div>
+                </div>
+                <div id="aba-preview" class="preview">
+                    <!--Colocar funcionalidade de mostrar as informações por aqui-->
+                </div>
+
+            </div>
+            <script src="/public/js/javascript.js"></script>

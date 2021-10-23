@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="/Style/style.css">
+    <link rel="stylesheet" href="/Style/csspages/cadastro.css">
+</head>
+
+<body id="cadastro">
+
+    <div id="container">
+        <div class="form">
+            <div class="back-box">
+                <a href="/"><img src="Images/arrow.svg" alt=""></a>
+            </div>
+            <h1>Cadastro</h1>
+            <p>Preencha com seus dados o formulario abaixo para realizar seu cadastro</p>
+            <form action="/cadastrar" method="POST">
+                <div class="input-group caixa-select">
+                    <label for="">Nome</label>
+                    <input type="text" name="nome" id="">
+                    <label for="">Sobrenome</label>
+                    <input type="text" name="sobrenome" id="">
+
+                    <div class="select-group">
+    
+                        <!--Tipo de curso-->
+                        <label for="">Tipo de Curso</label>
+                        <br>
+                        <select name="tipo_curso" id="tipo_curso">
+                            <option value="" selected disabled hidden>Escolha aqui</option>
+                            <% tipos_cursos_recuperados.forEach(tipos_cursos_recuperados => { %>
+                                <option value="<%= tipos_cursos_recuperados.id_tipo_curso%>" id="<%= tipos_cursos_recuperados.id_tipo_curso%>">
+                                    <%= tipos_cursos_recuperados.tipo_curso%>
+                                </option>
+                                <% }) %>
+                        </select>
+                        <br>
+
+                        <!--Curso-->
+                        <label for="">Curso</label>
+                        <br>
+                        <select name="curso" id="curso" onchange="">
+                            <option value="" selected disabled hidden>Escolha aqui</option>
+                        </select>
+                    </div>
+                    <br>
+                    <label for="">E-mail</label>
+                    <input type="email" name="email" id="">
+                    <label for="">CPF</label>
+                    <input type="text" name="cpf" id="cpf ">
+                    <label for="">Data de Nascimento</label>
+                    <input type="date" value="" name="nascimento" id="nascimento">
+                    <label for="">Telefone</label>
+                    <input type="text" name="telefone" id="telefone">
+                    <label for="">Instituição</label>
+                    <input type="text" name="instituicao" id="instituicao">
+                    <label for="">Cidade</label>
+                    <input type="text" name="cidade" id="cidade">
+                    <label for="">Senha</label>
+                    <input type="password" name="senha" id="senha">
+                    <label for="">Repita a Senha</label>
+                    <input type="password" name="" id="">
+
+                </div>
+                <div class="btn-group">
+                    <button type="submit">Finalizar Cadastro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const select_tipo_curso = document.getElementById('tipo_curso');
+        const select_curso = document.getElementById('curso');
+
+        select_tipo_curso.addEventListener('change', (e)=> {
+            let value = select_tipo_curso.value;
+            console.log(value)
+
+            // Limpa as OPTIONS do SELECT de curso antes de reatribuir novos cursos
+            while(select_curso.firstChild) {
+                select_curso.removeChild(select_curso.firstChild)
+            }
+
+            // O 'value' é o ID do TIPO_CURSO 
+            fetch(`/cursos_json/${value}`)
+                .then(response => {
+                    response.json().then(data => {
+                        data.cursos_recuperados.forEach(item => {
+                            let option = document.createElement('option')
+
+                            option.innerHTML= item.curso
+                            option.value = item.curso
+                            option.id = item.id_curso
+
+                             //console.log(option.value, "-", option.id)
+
+                            select_curso.appendChild(option)            
+                        })
+                    })
+                    
+                })
+                .catch(err => console.log(err));
+                
+        });
+    
+        select_curso.addEventListener('change', e => {
+            console.log(select_curso.value)
+        })
+    </script>
+
+</body>
+
+
+
+<link rel="stylesheet" href="/public/js/javascript.js">
+
+</html>

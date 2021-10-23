@@ -1,0 +1,60 @@
+<div class="topbar">
+    <div class="topbar-left">
+        <div class="navbar-logo">
+            <a href="/home"><img src="" class="logo" alt="" />Activity</a>
+        </div>
+    </div>
+    <nav class="navbar">
+        <button onclick="openNav()" class="sidenav-open">
+      <i class="bx bx-menu"></i>
+    </button>
+    </nav>
+</div>
+<div id="mySidenav" class="sidenav">
+    <div class="closebtn">
+        <div class="sidenav-text">
+            <span>PRINCIPAL</span>
+        </div>
+        <div>
+            <button onclick="closeNav()"><i class="bx bx-x"></i></button>
+        </div>
+
+    </div>
+    <ul>
+        <li>
+            <a href="home">Página Inicial</a>
+        </li>
+        <li>
+            <a href="atividadesComplementares">Atividades Complementares</a>
+        </li>
+        <li>
+            <a href="extensao">Atividades de Extensão</a>
+        </li>
+        <li>
+            <a href="estatisticas">Estatisticas</a>
+        </li>
+
+        <div class="linha"></div>
+        <div class="sidenav-horas">
+            <br><br>
+            <span>Horas registradas em ACs: </span>
+            <p><%= user.horas_acs %> horas</p>
+        </div>
+        <br><br>
+        <div class="sidenav-horas">
+            <span>Horas registradas em AEs: </span>
+            <p><%= user.horas_aes %> horas</p>
+            <br><br>
+        </div>
+        <div class="linha"></div>
+        <div class="sidenav-text">
+            <span>OPÇÕES</span>
+        </div>
+        <li>
+            <a href="perfildoAluno">Perfil do Aluno</a>
+        </li>
+        <li>
+            <a href="/logout" class="btn-sair">Sair</a>
+        </li>
+    </ul>
+</div>

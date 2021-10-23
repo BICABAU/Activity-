@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Style/csspages/post.css">
+    <link rel="stylesheet" href="/Style/style.css" />
+    <title>Registrar Atividade de Extensão</title>
+</head>
+
+<body>
+    <div class="container-post select-espacamento-post label-texto caixa-select">
+        <h1 class="titulo-post">
+            Insira os dados abaixo para realizar o upload dos certificados
+        </h1>
+        <form name="formPostAEs" action="/uploadAEs" class="form-modal" method="POST" enctype="multipart/form-data">
+            <div class="input_horas">
+                <label for="">Quantidade de horas que comprovada no documento:</label>
+                <input type="number" name="qtd_horas" id="qtd_horas" />
+            </div>
+            <div class="text_descricao">
+                <label for="">Descrição da atividade:</label>
+                <br>
+                <textarea name="descricao" id="descricao" placeholder="Certificado de participação em Minicurso X" cols="50" rows="4"></textarea>
+            </div>
+            <div class="input_periodo">
+                <br>
+                <label for="">Período de realização da atividade:</label>
+                <input type="text" name="periodo" id="periodo" placeholder="Ex: 23/09/2021 a 25/09/2021" />
+            </div>
+            <div class="esconder_tipo">
+                <label for="tipo_de_atividade">Indique o tipo de atividade</label>
+                <select name="tipo_de_atividade" id="tipo_de_atividade">
+                    <option value="Atividades De Extensão">Atividades de Extensão</option>
+            </select>
+            </div>
+            <br>
+            <label for="categoria_atividade">Tipo de atividade</label>
+            <select name="categoria_atividade" id="categoria_atividade">
+                <% resultado_categorias.forEach(function(resultado_categoria){ %>
+                <option value="<%= resultado_categoria.tipos_atividades_aes %>"><%= resultado_categoria.tipos_atividades_aes %></option>
+                <% }); %>
+            </select>
+            <div class="env-btn">
+                <input type="file" name="certificados" id="certificados" />
+                <label for="certificados">Insira o arquivo</label>
+            </div>
+            <div class="btn-box botao-form-post">
+                <button>SALVAR</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container_table">
+        <h1>Resumo das Atividades de Extensão</h1>
+        <table>
+            <tr>
+                <th>Tipo de atividade</th>
+                <th>Máxima</th>
+            </tr>
+            <tr>
+                <td>Projeto</td>
+                <td>100h</td>
+            </tr>
+            <tr>
+                <td>Programa</td>
+                <td>200h</td>
+            </tr>
+            <tr>
+                <td>Organização de curso</td>
+                <td>100h</td>
+            </tr>
+            <tr>
+                <td>Execução de curso</td>
+                <td>100h</td>
+            </tr>
+            <tr>
+                <td>Evento</td>
+                <td>100h</td>
+            </tr>
+            <tr>
+                <td>Prestação de serviço</td>
+                <td>100h</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
