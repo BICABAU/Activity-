@@ -19,7 +19,6 @@ exports.formatarData = (data) => {
   return dataFormatada;
 }
 
-<<<<<<< Updated upstream
 // exports.formatarDuasDatas = (datas = [new Date || new String]) => {
 //   var datasNaoFormatadas = datas.map(data => {
 //     if (!isValid(data))
@@ -61,49 +60,6 @@ exports.formatarData = (data) => {
 //     dataInicioAtividade: primeiraDataFormatada,
 //     dataFinalAtividade: ultimaDataFormatada
 //   }
-=======
-exports.formatarDuasDatas = (datas = []) => {
-  var datasNaoFormatadas = datas.map(data => {
-    if (!isValid(data))
-      return parseISO(data)
-
-    return data
-  })
-
-  const [primeiraDataFormatada, ultimaDataFormatada] = datasNaoFormatadas.map(data => {
-    return format(
-      data,
-      " dd '/' MM '/' yyyy",
-      { locale: pt }
-    )
-  })
-
-  // NAO APAGAR ESSE CODIGO
-  // const [primeiraData, ultimaData] = datas;
-
-  // const primeiraDataNaoFormatada = parseISO(primeiraData)
-  // const ultimaDataNaoFormatada = parseISO(ultimaData)
-
-
-  // const primeiraDataFormatada = format(
-  //   primeiraDataNaoFormatada,
-  //   dataNaoFormatada,
-  //   " dd '/' MM '/' yyyy",
-  //   { locale: pt }
-  // )
-
-  // const ultimaDataFormatada = format(
-  //   ultimaDataNaoFormatada,
-  //   dataNaoFormatada,
-  //   " dd '/' MM '/' yyyy",
-  //   { locale: pt }
-  // )
-
-  const dataFinal = {
-    dataInicioAtividade: primeiraDataFormatada,
-    dataFinalAtividade: ultimaDataFormatada
-  }
->>>>>>> Stashed changes
 
 //   return dataFinal
 // }
