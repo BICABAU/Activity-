@@ -155,11 +155,8 @@ Certificado.prototype.apagarAws = function (nome) {
 }
 
 Certificado.prototype.contabilizarHorasACs = function () {
-    const consulta = "UPDATE users SET horas_acs = horas_acs - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
+    const consulta = "UPDATE users SET horas_acs = horas_acs + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
     const values = [this.file.key, this.email]
-    console.log(this.file.key)
-    console.log(this.email)
-
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
@@ -172,10 +169,8 @@ Certificado.prototype.contabilizarHorasACs = function () {
 }
 
 Certificado.prototype.contabilizarHorasAEs = function () {
-    const consulta = "UPDATE users SET horas_aes = horas_aes - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
+    const consulta = "UPDATE users SET horas_aes = horas_aes + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
     const values = [this.file.key, this.email]
-    console.log(this.file.key)
-
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
@@ -188,7 +183,7 @@ Certificado.prototype.contabilizarHorasAEs = function () {
 }
 
 Certificado.prototype.removerHorasACs = function (nome) {
-    const consulta = "UPDATE users SET horas_acs = horas_acs + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
+    const consulta = "UPDATE users SET horas_acs = horas_acs - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
     const values = [nome, this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
@@ -202,7 +197,7 @@ Certificado.prototype.removerHorasACs = function (nome) {
 }
 
 Certificado.prototype.removerHorasAEs = function (nome) {
-    const consulta = "UPDATE users SET horas_aes = horas_aes + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
+    const consulta = "UPDATE users SET horas_aes = horas_aes - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
     const values = [nome, this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
