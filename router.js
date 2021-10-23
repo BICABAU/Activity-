@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Certificados = require('./models/Certificado');
+const Certificado = require('./models/Certificado');
 const multer = require('multer')
 const multerConfig = require('./config/multer')
 

@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express();
 const router = require("./router")
-const path = require("path")
+// const path = require("path")
 const sessionOptions = require("./config/sessionOptions")
 const cors = require("cors")
 
