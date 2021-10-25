@@ -5,8 +5,7 @@ npm-debug.log
 .DS_Store
 tmp/uploads/*
 yarn.lock
-
-tmp/uploads/*
+package-lock.json
 
 # local env files
 .env.local
