@@ -1,4 +1,4 @@
-const Curso = require('../models/Curso');
+
 
 exports.recuperarCursos = function (req, res) {
   let cursos = new Curso();

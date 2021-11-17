@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="/Style/csspages/mostrar_atividades.css">
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
 </head>
+
 <body>
     <section class="container_mostrar">
         <% certificado.forEach(function(certificado){ %>
@@ -16,9 +18,8 @@
 
             <div class="div_font">
                 <div class="button_sair">
-                    <a
-                        href="/extensao">
-                        <i class='bx bx-arrow-back' ></i> <span>Voltar</span>
+                    <a href="/extensao">
+                        <i class='bx bx-arrow-back'></i> <span>Voltar</span>
                     </a>
                 </div>
                 <br> <br> <br>
@@ -43,8 +44,7 @@
                 </div>
                 <br>
                 <div class="button_remover">
-                    <a
-                        href="/apagarCertificadoAEs/<%= certificado.nome %>">
+                    <a href="/apagarCertificadoAEs/<%= certificado.id_uploaded %>/<%= certificado.key_name %>">
                         <i class='bx bxs-trash-alt'></i> <span>Deletar</span>
                     </a>
                 </div>
@@ -53,5 +53,5 @@
             <% }); %>
     </section>
 </body>
+
 </html>
-  

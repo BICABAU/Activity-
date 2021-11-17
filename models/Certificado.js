@@ -23,44 +23,42 @@ Certificado.prototype.create = function () {
     });
 }
 
-Certificado.prototype.readCatAcsSubCategoria = function (acs) {
+Certificado.prototype.readCatAcsSubCategoria = function (string) {
 
-    const consulta = 'SELECT * from acs_subcategorias inner join acs' +
-        ' ON (acs_subcategorias.id_tipo_atividade_acs_fk = acs.id_tipo_atividade_acs)' +
-        `WHERE acs.id_tipo_atividade_acs = ${acs}`
-    console.log(consulta)
+    const consulta = 'SELECT id_activity_types, name_subcategory, id_type FROM activity_types join activities ON (id_type = id_activity_types)' +
+        ` WHERE is_complementary_activity = TRUE AND name_category = '${string}' OR is_atpas_activity = TRUE AND name_category = '${string}'`
     const values = []
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
                 reject("Erro ao retornar cursos de um determinado tipo!")
+
             } else {
                 subcategoria_recuperada = results.rows
-                console.log(subcategoria_recuperada)
                 resolve(subcategoria_recuperada)
             }
         });
     });
 };
 
-Certificado.prototype.readAllACs = function () {
-    const consulta = "SELECT * FROM certificados u where u.email_fk=$1 and u.tipo_de_atividade='Atividades Complementares'";
-    const values = [this.email]
+Certificado.prototype.readAllACs = function (resultado) {
+    const consulta = "select certifications.name, certifications.id_uploaded ,activity_types.name_subcategory from uploaded_certifications join certifications on (id_uploaded = id) join activities on (certifications.id_activity = activities.id_activities) join activity_types on(activities.id_type = activity_types.id_activity_types ) join users on (certifications.id_user_fk = users.id_user) where users.id_user = $1"
+    const values = [resultado.id_user]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
                 reject("Erro ao recuperar os certificados!" + error)
             } else {
                 resultado = results.rows
-
                 resolve(resultado);
             }
         });
     });
 }
 
+
 Certificado.prototype.readCatAes = function () {
-    const consulta = "SELECT * from aes"
+    const consulta = "SELECT name_category, id_activity_types, is_extension_activity FROM activity_types AS atp WHERE is_extension_activity = TRUE"
     return new Promise((resolve, reject) => {
         pool.query(consulta, (error, results) => {
             if (error) {
@@ -74,7 +72,10 @@ Certificado.prototype.readCatAes = function () {
 }
 
 Certificado.prototype.readCatAcs = function () {
-    const consulta = "SELECT * from acs"
+    const consulta = "SELECT name_category, is_complementary_activity, is_atpas_activity FROM activity_types AS atp" +
+        " WHERE is_complementary_activity = TRUE OR is_atpas_activity = TRUE" +
+        " GROUP BY name_category,is_complementary_activity, is_atpas_activity";
+
     return new Promise((resolve, reject) => {
         pool.query(consulta, (error, results) => {
             if (error) {
@@ -87,9 +88,9 @@ Certificado.prototype.readCatAcs = function () {
     })
 }
 
-Certificado.prototype.readAllAEs = function () {
-    const consulta = "SELECT * FROM certificados u where u.email_fk=$1 and u.tipo_de_atividade='Atividades De Extensão'";
-    const values = [this.email]
+Certificado.prototype.readAllAEs = function (resultado) {
+    const consulta = "select certifications.name, certifications.id_uploaded ,activity_types.name_category from uploaded_certifications join certifications on (id_uploaded = id) join activities on (certifications.id_activity = activities.id_activities) join activity_types on(activities.id_type = activity_types.id_activity_types ) join users on (certifications.id_user_fk = users.id_user) where users.id_user = $1";
+    const values = [resultado.id_user]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
@@ -103,7 +104,7 @@ Certificado.prototype.readAllAEs = function () {
 }
 
 Certificado.prototype.readAll = function () {
-    const consulta = "SELECT * FROM certificados u where u.email_fk=$1";
+    const consulta = "select certifications.name, certifications.description, certifications.activity_start, certifications.activity_end, certifications.amount_valid_hours ,activity_types.name_subcategory, activity_types.name_category  from uploaded_certifications join certifications on (id_uploaded = id) join activities on(certifications.id_activity = activities.id_activities) join activity_types on(activities.id_type = activity_types.id_activity_types) join users on(certifications.id_user_fk = users.id_user) where users.email = $1"
     const values = [this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
@@ -118,7 +119,7 @@ Certificado.prototype.readAll = function () {
 }
 
 Certificado.prototype.readOneById = function (id_certificado) {
-    const consulta = "SELECT * FROM certificados u where u.id_certificado=$1";
+    const consulta = "select * from uploaded_certifications join certifications on (id = $1)";
     const values = [id_certificado]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
@@ -126,16 +127,15 @@ Certificado.prototype.readOneById = function (id_certificado) {
                 reject("Erro ao recuperar os certificados!" + error)
             } else {
                 resultado = results.rows
-                console.log(resultado)
                 resolve(resultado);
             }
         });
     });
 }
 
-Certificado.prototype.apagar = function (nome) {
-    const consulta = "DELETE FROM certificados u where u.nome=$1 and u.email_fk=$2";
-    const values = [nome, this.email]
+Certificado.prototype.delete_uploaded_certifications = function (name) {
+    const consulta = "DELETE FROM uploaded_certifications u where u.key_name =$1";
+    const values = [name]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
@@ -147,44 +147,30 @@ Certificado.prototype.apagar = function (nome) {
     });
 }
 
-Certificado.prototype.apagarAws = function (nome) {
+Certificado.prototype.delete_certifications = function (name) {
+    const consulta = "DELETE FROM certifications u where u.id_uploaded=$1";
+    const values = [name]
+    return new Promise((resolve, reject) => {
+        pool.query(consulta, values, (error, results) => {
+            if (error) {
+                reject("Não foi possivel apagar o certificado!" + error)
+            } else {
+                resolve("Certificados apagados com sucesso")
+            }
+        });
+    });
+}
+
+Certificado.prototype.apagarAws = function (name) {
     s3.deleteObject({
         Bucket: 'upload-server-ifpi',
-        Key: nome,
+        Key: name,
     }).promise()
 }
 
-Certificado.prototype.contabilizarHorasACs = function () {
-    const consulta = "UPDATE users SET horas_acs = horas_acs + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
-    const values = [this.file.key, this.email]
-    return new Promise((resolve, reject) => {
-        pool.query(consulta, values, (error, results) => {
-            if (error) {
-                reject("Não foi possivel contabilizar as horas!" + error)
-            } else {
-                resolve("Horas contabilizadas com sucesso")
-            }
-        });
-    });
-}
-
-Certificado.prototype.contabilizarHorasAEs = function () {
-    const consulta = "UPDATE users SET horas_aes = horas_aes + qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
-    const values = [this.file.key, this.email]
-    return new Promise((resolve, reject) => {
-        pool.query(consulta, values, (error, results) => {
-            if (error) {
-                reject("Não foi possivel contabilizar as horas!" + error)
-            } else {
-                resolve("Horas contabilizadas com sucesso")
-            }
-        });
-    });
-}
-
-Certificado.prototype.removerHorasACs = function (nome) {
-    const consulta = "UPDATE users SET horas_acs = horas_acs - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
-    const values = [nome, this.email]
+Certificado.prototype.removerHorasACs = function (id) {
+    const consulta = "UPDATE users SET complementary_activity = complementary_activity - amount_hours FROM certifications u where u.id_uploaded = $1 AND email = $2"
+    const values = [id, this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {
@@ -196,9 +182,9 @@ Certificado.prototype.removerHorasACs = function (nome) {
     });
 }
 
-Certificado.prototype.removerHorasAEs = function (nome) {
-    const consulta = "UPDATE users SET horas_aes = horas_aes - qtd_horas FROM certificados u where u.nome = $1 AND email = $2"
-    const values = [nome, this.email]
+Certificado.prototype.removerHorasAEs = function (id) {
+    const consulta = "UPDATE users SET extension_activity = extension_activity - amount_hours FROM certifications u where u.id_uploaded = $1 AND email = $2"
+    const values = [id, this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
             if (error) {

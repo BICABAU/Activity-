@@ -1,32 +1,23 @@
-const Certificado = require('../models/Certificado');
-
-
-exports.uploadsAcs = function (req, res) {
-    let certificados = new Certificado(req.file, req.body, req.session.user.email)
-    certificados
-        .create().then(certificados.contabilizarHorasACs())
-        .then((result) => {
-            console.log(req.file)
-            res.redirect('atividadesComplementares')
-        })
-        .catch((err) => {
-            res.send('err')
-        })
-};
+const Certificado = require('../models/Certificado')
+const User = require('../models/User')
 
 exports.getAllAcs = function (req, res) {
-    let certificado = new Certificado(req.file, null, req.session.user.email)
-    certificado
-        .readAllACs()
-        .then((resultado) => {
-            res.render("pages/atividadesComplementares", { certificado: resultado })
-        }).catch((err) => {
-            res.send(err);
-        })
+    let user = new User(req.session.user)
+    user.readByEmail().then((resultado) => {
+        let certificado = new Certificado()
+        certificado
+            .readAllACs(resultado)
+            .then((resultado) => {
+                res.render("pages/atividadesComplementares", { certificado: resultado })
+            }).catch((err) => {
+                res.send(err);
+            })
+    })
+
 };
 
 exports.getByIdAc = function (req, res) {
-    const id = req.params.id_certificado;
+    const id = req.params.id_uploaded;
     let certificado = new Certificado(null, null, req.session.user.email);
     certificado
         .readOneById(id)
@@ -39,11 +30,13 @@ exports.getByIdAc = function (req, res) {
 };
 
 exports.apagarCertificadoAcs = function (req, res) {
-    const nome = req.params.nome
+    const key_name = req.params.key_name
+    const id = req.params.id_uploaded
     let certificado = new Certificado(null, null, req.session.user.email)
     certificado
-        .removerHorasACs(nome).then(certificado.apagarAws(nome)).then(certificado.apagar(nome))
-        .then((resultado) => {
+        .removerHorasACs(id).then(certificado.apagarAws(key_name))
+        .then(certificado.delete_certifications(id)).then(certificado.delete_uploaded_certifications(key_name))
+        .then((result) => {
             res.redirect('/home')
         })
         .catch((err) => {

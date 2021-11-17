@@ -1,0 +1,78 @@
+.mission-week-container {
+  width: 100%;
+  display: grid;
+  padding: 40px 60px 0px 160px;
+}
+
+.header-week-mission {
+  font-size: 25px;
+  display: flex;
+}
+
+.header-mission-2 {
+  font-size: 20px;
+  display: flex;
+  height: 3vh;
+  width: 90%;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.mission-week-box-container {
+  display: flex;
+}
+
+.mission-week-box-container div {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px 10px 0px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 90%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-box {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 36px;
+}
+
+.mission-week-box-container-2 {
+  display: flex;
+}
+
+.mission-week-box-container-2 div {
+  font-size: 20px;
+  font-weight: bold;
+  color: #625b5b;
+  background-color: #54cc96;
+  padding: 0px 10px 0px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 90%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.text-mission-week i {
+  font-size: 18px;
+  margin: 0px 5px 0px 5px;
+}
+.text-mission-week {
+  font-weight: 300;
+}
+
+.btn-box {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 40px;
+}

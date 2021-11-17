@@ -1,404 +1,1265 @@
 <%- contentFor('title') %>
-Estatisticas do Usuario
+    Estatisticas do Usuario
 
-<%- contentFor('main') %>
-    <section class="estatisticas" id="estatisticas">
-        <div class="estatisticas-content">
-            <div class="estatisticas-titulo">
-                <h2>Estatísticas</h2>
-            </div>
-            <div class="estatisticas-subtitulo">
-                <p>Confira o relatório de seu desempenho até agora!</p>
-            </div>
-            <div class="estatisticas-container">
-                <div class="estatisticas-tamanho">
-                    <button class="accordion-estatisticas">Atividades Extracurriculares: X Horas Restantes</button>
-                    <div class="panel-estatisticas">
-                        <!--Inicio do Painel dos Botões-->
-                        <button class="accordion-estatisticas">Atividades de Ensino e Formação Profissional</button>
-
+    <%- contentFor('main') %>
+        <section class="estatisticas" id="estatisticas">
+            <div class="estatisticas-content">
+                <div class="estatisticas-titulo">
+                    <h2>Estatísticas</h2>
+                </div>
+                <div class="estatisticas-subtitulo">
+                    <p>Confira o relatório de seu desempenho até agora!</p>
+                </div>
+                <div class="estatisticas-container">
+                    <div class="estatisticas-tamanho">
+                        <button class="accordion-estatisticas">
+                            <% if(user.curso=='1' ) { %>
+                                Atividades Extracurriculares
+                                <% } else {%>
+                                    Atividades Teórico-Práticas de Aprofundamento (ATPAs)
+                                    <%}%>
+                        </button>
                         <div class="panel-estatisticas">
-                            <button class="accordion-estatisticas">Disciplinas de Outra Graduação</button>
+                            <!--Inicio do Painel dos Botões-->
+                            <button class="accordion-estatisticas">
+                                <%if(user.curso=='1' ) {%>
+                                    Atividades de Ensino e Formação Profissional
+                                    <%} else{%>
+                                        Atividades de Ensino e Iniciação à Docência
+                                        <%}%>
+                            </button>
+
                             <div class="panel-estatisticas">
-                                <% certificado.forEach(function(certificado){ %>
-                                    <% if (certificado.subcategoria_atividade=='Disciplinas de Outras Graduação') {%>
-                                        <div class="espacamento">
-                                            <div>
-                                                <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Disciplinas de outra graduação
+                                        <%} else{%>
+                                            Disciplinas de graduação
+                                            <%}%>
+                                </button>
+                                <div class="panel-estatisticas">
+                                    <% certificado.forEach(function(certificado){ %>
+                                        <% if (certificado.name_subcategory=='disciplinas de outra graduação' ) {%>
+                                            <div class="espacamento">
+                                                <div>
+                                                    <span>Nome: <%=certificado.name%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Descrição: <%= certificado.description%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Horas que podem ser colocadas:<%=
+                                                            certificado.amount_valid_hours%></span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>Divisão: <%=certificado.categoria_atividade %></span>
+                                            <% } else if (certificado.name_subcategory=='disciplinas de graduação' ) {
+                                                %>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
+                                </div>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Monitoria
+                                        <%} else{%>
+                                            Monitoria acadêmica
+                                            <%}%>
+                                </button>
+                                <div class="panel-estatisticas">
+                                    <% certificado.forEach(function(certificado){ %>
+                                        <% if (certificado.name_subcategory=='monitoria' ) {%>
+                                            <div class="espacamento">
+                                                <div>
+                                                    <span>Nome: <%=certificado.name%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Descrição: <%= certificado.description%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Horas que podem ser colocadas:<%=
+                                                            certificado.amount_valid_hours%></span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Nome: <%=certificado.chave%></span>
-                                            </div>
-                                            <div>
-                                                <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                            </div>
-                                        </div>
-                                        <% }}); %>
-                            </div>
-                            <button class="accordion-estatisticas">Monitoria</button>
-                            <div class="panel-estatisticas">
-                                <% certificado.forEach(function(certificado){ %>
-                                    <% if (certificado.subcategoria_atividade=='Monitoria') {%>
-                                        <div class="espacamento">
-                                            <div>
-                                                <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Nome: <%=certificado.chave%></span>
-                                            </div>
-                                            <div>
-                                                <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                            </div>
-                                        </div>
-                                        <% }}); %>
+                                            <% } else if (certificado.name_subcategory=='monitoria acadêmica' ) { %>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
 
 
-                            </div>
-                            <button class="accordion-estatisticas">Cursos de Idioma</button>
-                            <div class="panel-estatisticas">
-                                <% certificado.forEach(function(certificado){ %>
-                                    <% if (certificado.subcategoria_atividade=='Cursos de Idioma') {%>
-                                        <div class="espacamento">
-                                            <div>
-                                                <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
+                                </div>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Cursos de idioma
+                                        <%} else{%>
+                                            Cursos de linguagens
+                                            <%}%>
+                                </button>
+                                <div class="panel-estatisticas">
+                                    <% certificado.forEach(function(certificado){ %>
+                                        <% if (certificado.name_subcategory=='cursos de idioma' ) {%>
+                                            <div class="espacamento">
+                                                <div>
+                                                    <span>Nome: <%=certificado.name%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Descrição: <%= certificado.description%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Horas que podem ser colocadas:<%=
+                                                            certificado.amount_valid_hours%></span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>Divisão: <%=certificado.categoria_atividade %></span>
+                                            <% } else if (certificado.name_subcategory=='cursos de linguagens' ) { %>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
+                                </div>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Estagio
+                                        <%} else{%>
+                                            Bolsas de iniciação à docência - PIBID
+                                            <%}%>
+                                </button>
+                                <div class="panel-estatisticas">
+                                    <% certificado.forEach(function(certificado){ %>
+                                        <% if (certificado.name_subcategory=='estagio' ) {%>
+                                            <div class="espacamento">
+                                                <div>
+                                                    <span>Nome: <%=certificado.name%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Descrição: <%= certificado.description%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Horas que podem ser colocadas:<%=
+                                                            certificado.amount_valid_hours%></span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>Grupo: <%=certificado.subcategoria_atividade %></span>
+                                            <% } else if (certificado.name_subcategory=='bolsa de iniciação a docência'
+                                                ) { %>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
+                                </div>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Representação estudantil
+                                        <%} else{%>
+                                            Minicursos
+                                            <%}%>
+                                </button>
+                                <div class="panel-estatisticas">
+                                    <% certificado.forEach(function(certificado){ %>
+                                        <% if
+                                            (certificado.name_subcategory=='representação estudantil e órgãos colegiados'
+                                            ) {%>
+                                            <div class="espacamento">
+                                                <div>
+                                                    <span>Nome: <%=certificado.name%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Descrição: <%= certificado.description%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                </div>
+                                                <div>
+                                                    <span>Horas que podem ser colocadas:<%=
+                                                            certificado.amount_valid_hours%></span>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <span>Nome: <%=certificado.chave%></span>
-                                            </div>
-                                            <div>
-                                                <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                            </div>
+                                            <% } else if (certificado.name_subcategory=='minicursos' ) { %>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
+                                </div>
+                                <%if (user.curso=='2' || user.curso=='3' ){%>
+                                    <button class="accordion-estatisticas">
+                                        Estágio voluntário
+                                    </button>
+                                    <%}%>
+                                        <div class="panel-estatisticas">
+                                            <% certificado.forEach(function(certificado){ %>
+                                                <% if (certificado.name_subcategory=='Disciplinas de Outras Graduação' )
+                                                    {%>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
                                         </div>
-                                        <% }}); %>
                             </div>
-                            <button class="accordion-estatisticas">Estagio</button>
-                            <div class="panel-estatisticas">
-                                <% certificado.forEach(function(certificado){ %>
-                                    <% if (certificado.subcategoria_atividade=='Estagio') {%>
-                                        <div class="espacamento">
-                                            <div>
-                                                <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
+
+                            <div>
+                                <button class="accordion-estatisticas">
+                                    <%if(user.curso=='1' ) {%>
+                                        Atividades de pesquisa
+                                        <%} else{%>
+                                            Atividades de pesquisa e eventos científicos
+                                            <%}%>
+                                </button>
+
+                                <div class="panel-estatisticas">
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Bolsista
+                                            <%} else{%>
+                                                Participação em projetos de pesquisa
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='bolsista do projeto' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação em projetos de pesquisa'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Colaborações em projetos
+                                            <%} else{%>
+                                                Participação voluntária em projetos de pesquisa
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='colaborador do projeto' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação voluntária em projetos de pesquisa'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Participação em eventos científicos
+                                            <%} else{%>
+                                                Participação como ouvinte em eventos científicos
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='participação em eventos científicos' )
+                                                {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação como ouvinte em eventos científicos'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Apresentação de Pôster
+                                            <%} else{%>
+                                                Participação voluntária na organização de eventos científicos
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='apresentação em poster' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação voluntária na organização de eventos científicos'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Apresentação Oral
+                                            <%} else{%>
+                                                Publicação em periódicos com ISSN
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='apresentação oral' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='publicação em periódicos com ISSN'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Palestras, Minicursos e Oficinas Ministrados
+                                            <%} else{%>
+                                                Publicação em anais de eventos científicos
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if
+                                                (certificado.name_subcategory=='palestra/minicurso/oficina ministrados'
+                                                ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='publicação em anais de eventos científicos'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Publicação de Artigo
+                                            <%} else{%>
+                                                Publicação de livro ou capítulo de livro
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='Publicação de artigo' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='publicação de livro ou capítulo de livro'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <% if (user.curso=='2' || user.curso=='3' ) {%>
+                                        <button class="accordion-estatisticas">
+                                            Premiação em evento ou concurso científico
+                                        </button>
+                                        <% } %>
+                                            <div class="panel-estatisticas">
+                                                <% certificado.forEach(function(certificado){ %>
+                                                    <% if
+                                                        (certificado.name_subcategory=='premiação em evento ou concurso científico'
+                                                        ) {%>
+                                                        <div class="espacamento">
+                                                            <div>
+                                                                <span>Nome: <%=certificado.name%></span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Descrição: <%= certificado.description%></span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Inicio da Atividade: <%=
+                                                                        certificado.activity_start%></span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Final da Atividade: <%= certificado.activity_end%>
+                                                                </span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Horas que podem ser colocadas:<%=
+                                                                        certificado.amount_valid_hours%></span>
+                                                            </div>
+                                                        </div>
+                                                        <% }}); %>
                                             </div>
-                                            <div>
-                                                <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Nome: <%=certificado.chave%></span>
-                                            </div>
-                                            <div>
-                                                <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                            </div>
-                                        </div>
-                                        <% }}); %>
+                                            <% if (user.curso=='2' || user.curso=='3' ) {%>
+                                                <button class="accordion-estatisticas">
+                                                    Produção de softwares e/ou mídias didático-científicas na área do
+                                                    curso
+                                                </button>
+                                                <% } %>
+                                                    <div class="panel-estatisticas">
+                                                        <% certificado.forEach(function(certificado){ %>
+                                                            <% if
+                                                                (certificado.name_subcategory=='produção de softwares e/ou mídias didático-científicas na área do curso'
+                                                                ) {%>
+                                                                <div class="espacamento">
+                                                                    <div>
+                                                                        <span>Nome: <%=certificado.name%></span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Descrição: <%= certificado.description%>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Inicio da Atividade: <%=
+                                                                                certificado.activity_start%></span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Final da Atividade: <%=
+                                                                                certificado.activity_end%></span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Horas que podem ser colocadas:<%=
+                                                                                certificado.amount_valid_hours%>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <% }}); %>
+                                                    </div>
+                                                    <% if (user.curso=='2' || user.curso=='3' ) {%>
+                                                        <button class="accordion-estatisticas">
+                                                            Apresentação por pôster
+                                                        </button>
+                                                        <% } %>
+                                                            <div class="panel-estatisticas">
+                                                                <% certificado.forEach(function(certificado){ %>
+                                                                    <% if
+                                                                        (certificado.name_subcategory=='apresentação por pôster'
+                                                                        ) {%>
+                                                                        <div class="espacamento">
+                                                                            <div>
+                                                                                <span>Nome: <%=certificado.name%></span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>Descrição: <%=
+                                                                                        certificado.description%></span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>Inicio da Atividade: <%=
+                                                                                        certificado.activity_start%>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>Final da Atividade: <%=
+                                                                                        certificado.activity_end%>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>Horas que podem ser colocadas:<%=
+                                                                                        certificado.amount_valid_hours%>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <% }}); %>
+                                                            </div>
+                                                            <% if (user.curso=='2' || user.curso=='3' ) {%>
+                                                                <button class="accordion-estatisticas">
+                                                                    Apresentação oral
+                                                                </button>
+                                                                <% } %>
+                                                                    <div class="panel-estatisticas">
+                                                                        <% certificado.forEach(function(certificado){ %>
+                                                                            <% if
+                                                                                (certificado.name_subcategory=='apresentação Oral'
+                                                                                ) {%>
+                                                                                <div class="espacamento">
+                                                                                    <div>
+                                                                                        <span>Nome:
+                                                                                            <%=certificado.name%>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <span>Descrição: <%=
+                                                                                                certificado.description%>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <span>Inicio da Atividade: <%=
+                                                                                                certificado.activity_start%>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <span>Final da Atividade: <%=
+                                                                                                certificado.activity_end%>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <span>Horas que podem ser
+                                                                                            colocadas:<%=
+                                                                                                certificado.amount_valid_hours%>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <% }}); %>
+                                                                    </div>
+                                                                    <% if (user.curso=='2' || user.curso=='3' ) {%>
+                                                                        <button class="accordion-estatisticas">
+                                                                            Minicurso/Oficina/Palestra
+                                                                        </button>
+                                                                        <% } %>
+                                                                            <div class="panel-estatisticas">
+                                                                                <% certificado.forEach(function(certificado){
+                                                                                    %>
+                                                                                    <% if
+                                                                                        (certificado.name_subcategory=='minicurso/oficina/palestra'
+                                                                                        ) {%>
+                                                                                        <div class="espacamento">
+                                                                                            <div>
+                                                                                                <span>Nome:
+                                                                                                    <%=certificado.name%>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <span>Descrição: <%=
+                                                                                                        certificado.description%>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <span>Inicio da
+                                                                                                    Atividade: <%=
+                                                                                                        certificado.activity_start%>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <span>Final da
+                                                                                                    Atividade: <%=
+                                                                                                        certificado.activity_end%>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <span>Horas que podem
+                                                                                                    ser colocadas:<%=
+                                                                                                        certificado.amount_valid_hours%>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <% }}); %>
+                                                                            </div>
+
+                                </div>
+
                             </div>
-                            <button class="accordion-estatisticas">Representação Estudantil</button>
-                            <div class="panel-estatisticas">
-                                <% certificado.forEach(function(certificado){ %>
-                                    <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                        <div class="espacamento">
-                                            <div>
-                                                <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                            </div>
-                                            <div>
-                                                <span>Nome: <%=certificado.chave%></span>
-                                            </div>
-                                            <div>
-                                                <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                            </div>
-                                        </div>
-                                        <% }}); %>
+                            <div>
+                                <button class="accordion-estatisticas">Atividades Outros</button>
+
+                                <div class="panel-estatisticas">
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Participação em Eventos Esportivos
+                                            <%} else{%>
+                                                Participação voluntária na organização de eventos esportivos ou
+                                                culturais
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if
+                                                (certificado.name_subcategory=='organização de eventos esportivos e/ou culturais junto ao IFPI'
+                                                ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação voluntária na organização de eventos esportivos ou culturais no IFPI'
+                                                    ) { %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Organização de Eventos Esportivos
+                                            <%} else{%>
+                                                Participação voluntária na organização de eventos esportivos ou
+                                                culturais
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if
+                                                (certificado.name_subcategory=='organização de eventos esportivos e/ou culturais em instituições públicas ou privadas socialmente reconhecidas'
+                                                ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory=='participação voluntária na organização de eventos esportivos ou culturais em Instituições Públicas ou Privadas socialmente reconhecidas'
+                                                    ) { %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        <%if(user.curso=='1' ) {%>
+                                            Participação em Eventos Filantrópicos
+                                            <%} else{%>
+                                                Participação voluntária em eventos filantrópicos desenvolvidos no
+                                                âmbito do IFPI
+                                                <%}%>
+                                    </button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if
+                                                (certificado.name_subcategory=='participação voluntária em eventos filantrópicos desenvolvidos no âmbito do IFPI'
+                                                ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% } else if
+                                                    (certificado.name_subcategory==' participação voluntária em eventos filantrópicos desenvolvidos no âmbito do IFPI'
+                                                    ){ %>
+                                                    <div class="espacamento">
+                                                        <div>
+                                                            <span>Nome: <%=certificado.name%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Descrição: <%= certificado.description%></span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Final da Atividade: <%= certificado.activity_end%>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>Horas que podem ser colocadas:<%=
+                                                                    certificado.amount_valid_hours%></span>
+                                                        </div>
+                                                    </div>
+                                                    <% }}); %>
+                                    </div>
+                                    <button class="accordion-estatisticas">
+                                        Visitas Técnicas</button>
+                                    <div class="panel-estatisticas">
+                                        <% certificado.forEach(function(certificado){ %>
+                                            <% if (certificado.name_subcategory=='visitas técnicas' ) {%>
+                                                <div class="espacamento">
+                                                    <div>
+                                                        <span>Nome: <%=certificado.name%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Descrição: <%= certificado.description%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Inicio da Atividade: <%= certificado.activity_start%>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Horas que podem ser colocadas:<%=
+                                                                certificado.amount_valid_hours%></span>
+                                                    </div>
+                                                </div>
+                                                <% }}); %>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
-
-                        <div>
-                            <button class="accordion-estatisticas">Atividades de Pesquisa</button>
-
+                    </div>
+                    <div class="estatisticas-tamanho">
+                        <button class="accordion-estatisticas">Atividades de Extensão</button>
+                        <div class="panel-estatisticas">
+                            <!-- Inicio do Painel de Botões -->
+                            <button class="accordion-estatisticas">Programa</a> </button>
                             <div class="panel-estatisticas">
-                                <button class="accordion-estatisticas">Bolsista</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_category=='programa' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
-                                <button class="accordion-estatisticas">Eventos Cientificos</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
-                                <button class="accordion-estatisticas">Publicação de Artigo</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
+                            </div>
+                            <button class="accordion-estatisticas">Projeto</button>
+                            <div class="panel-estatisticas">
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_category=='projeto' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
+                                            </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
+                                            </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                            </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
+                            </div>
+                            <button class="accordion-estatisticas">Organização de Curso</button>
+                            <div class="panel-estatisticas">
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_category=='organização de curso' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
+                                            </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
+                                            </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                            </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
                             </div>
 
-                        </div>
-                        <div>
-                            <button class="accordion-estatisticas">Atividades Outras</button>
-
+                            <button class="accordion-estatisticas">Execução de Curso</button>
                             <div class="panel-estatisticas">
-                                <button class="accordion-estatisticas">Participação em Eventos Esportivos</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_category=='execução de curso' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
-                                <button class="accordion-estatisticas">Organização de Eventos Esportivos</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
-                                <button class="accordion-estatisticas">Participação em Eventos Filantrópicos</button>
-                                <div class="panel-estatisticas">
-                                    <% certificado.forEach(function(certificado){ %>
-                                        <% if (certificado.subcategoria_atividade=='Representação Estudantil') {%>
-                                            <div class="espacamento">
-                                                <div>
-                                                    <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Grupo: <%=certificado.subcategoria_atividade %></span>
-                                                </div>
-                                                <div>
-                                                    <span>Nome: <%=certificado.chave%></span>
-                                                </div>
-                                                <div>
-                                                    <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                                </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
                                             </div>
-                                            <% }}); %>
-                                </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
                             </div>
 
+                            <button class="accordion-estatisticas">Evento</button>
+                            <div class="panel-estatisticas">
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_subcategory=='Evento' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
+                                            </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
+                                            </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                            </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
+                            </div>
+                            <button class="accordion-estatisticas">Prestação de Serviço</button>
+                            <div class="panel-estatisticas">
+                                <% certificado.forEach(function(certificado){ %>
+                                    <% if (certificado.name_subcategory=='Prestação de Serviço' ) {%>
+                                        <div class="espacamento">
+                                            <div>
+                                                <span>Nome: <%=certificado.name%></span>
+                                            </div>
+                                            <div>
+                                                <span>Descrição: <%= certificado.description%></span>
+                                            </div>
+                                            <div>
+                                                <span>Inicio da Atividade: <%= certificado.activity_start%></span>
+                                            </div>
+                                            <div>
+                                                <span>Final da Atividade: <%= certificado.activity_end%></span>
+                                            </div>
+                                            <div>
+                                                <span>Horas que podem ser colocadas:<%= certificado.amount_valid_hours%>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <% }}); %>
+                            </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="estatisticas-tamanho">
-                    <button class="accordion-estatisticas">Atividades de Extensão: Y Horas Restantes</button>
-                    <div class="panel-estatisticas">
-                        <!-- Inicio do Painel de Botões -->
-                        <button class="accordion-estatisticas">Programa</a> </button>
-                        <div class="panel-estatisticas">
-                            <% certificado.forEach(function(certificado){ %>
-                                <% if (certificado.categoria_atividade=='Programa') {%>
-                                    <div class="espacamento">
-                                        <div>
-                                            <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Nome: <%=certificado.chave%></span>
-                                        </div>
-                                        <div>
-                                            <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                        </div>
-                                    </div>
-                                    <% }}); %>
-                        </div>
-                        <button class="accordion-estatisticas">Projeto</button>
-                        <div class="panel-estatisticas">
-                            <% certificado.forEach(function(certificado){ %>
-                                <% if (certificado.categoria_atividade=='Projeto') {%>
-                                    <div class="espacamento">
-                                        <div>
-                                            <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Nome: <%=certificado.chave%></span>
-                                        </div>
-                                        <div>
-                                            <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                        </div>
-                                    </div>
-                                    <% }}); %>
-                        </div>
-                        <button class="accordion-estatisticas">Curso</button>
-                        <div class="panel-estatisticas">
-                            <% certificado.forEach(function(certificado){ %>
-                                <% if (certificado.categoria_atividade=='Curso') {%>
-                                    <div class="espacamento">
-                                        <div>
-                                            <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Nome: <%=certificado.chave%></span>
-                                        </div>
-                                        <div>
-                                            <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                        </div>
-                                    </div>
-                                    <% }}); %>
-                        </div>
-                        <button class="accordion-estatisticas">Evento</button>
-                        <div class="panel-estatisticas">
-                            <% certificado.forEach(function(certificado){ %>
-                                <% if (certificado.categoria_atividade=='Evento') {%>
-                                    <div class="espacamento">
-                                        <div>
-                                            <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Nome: <%=certificado.chave%></span>
-                                        </div>
-                                        <div>
-                                            <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                        </div>
-                                    </div>
-                                    <% }}); %>
-                        </div>
-                        <button class="accordion-estatisticas">Prestação de Serviço</button>
-                        <div class="panel-estatisticas">
-                            <% certificado.forEach(function(certificado){ %>
-                                <% if (certificado.categoria_atividade=='Prestação de Serviço') {%>
-                                    <div class="espacamento">
-                                        <div>
-                                            <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Divisão: <%=certificado.categoria_atividade %></span>
-                                        </div>
-                                        <div>
-                                            <span>Nome: <%=certificado.chave%></span>
-                                        </div>
-                                        <div>
-                                            <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
-                                        </div>
-                                    </div>
-                                    <% }}); %>
-                        </div>
-                    </div>
 
-                </div>
             </div>
-
-        </div>

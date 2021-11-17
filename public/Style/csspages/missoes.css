@@ -1,0 +1,92 @@
+.mission-container {
+  display: flex;
+  height: 70vh;
+  flex-direction: column;
+}
+
+.header-mission {
+  padding: 40px 0px 20px 120px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-info-container {
+  display: flex;
+  grid-gap: 20px;
+  padding: 10px 0px 10px 0px;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 90vh;
+  max-width: 20vw;
+}
+.mission-info-container div {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px 10px 20px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-space {
+  display: flex;
+  padding: 0px 0px 0px 150px;
+  width: 40%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mission-space p {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mission-space-2 {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 0px 150px;
+  width: 40%;
+}
+
+.mission-space-2 p {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+}
+
+.mission-box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.mission_title {
+  font-family: sans-serif;
+  margin-bottom: 1rem;
+}
+
+.mission_subtitulo {
+  font-family: sans-serif;
+  margin-bottom: 2rem;
+  font-size: 22px;
+}
+
+.mission_tipo {
+  color: var(--color-green);
+  margin-bottom: 1rem;
+}
+
+.mission_conteudo {
+  font-weight: none;
+  font-size: 18px;
+}

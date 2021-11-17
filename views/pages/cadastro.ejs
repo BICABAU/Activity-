@@ -22,9 +22,9 @@
             <form action="/cadastrar" method="POST">
                 <div class="input-group caixa-select">
                     <label for="">Nome</label>
-                    <input type="text" name="nome" id="">
+                    <input type="text" name="first_name" id="first_name">
                     <label for="">Sobrenome</label>
-                    <input type="text" name="sobrenome" id="">
+                    <input type="text" name="last_name" id="last_name">
 
                     <div class="select-group">
     
@@ -34,8 +34,8 @@
                         <select name="tipo_curso" id="tipo_curso">
                             <option value="" selected disabled hidden>Escolha aqui</option>
                             <% tipos_cursos_recuperados.forEach(tipos_cursos_recuperados => { %>
-                                <option value="<%= tipos_cursos_recuperados.id_tipo_curso%>" id="<%= tipos_cursos_recuperados.id_tipo_curso%>">
-                                    <%= tipos_cursos_recuperados.tipo_curso%>
+                                <option value="<%= tipos_cursos_recuperados.id_course_types%>" id="<%= tipos_cursos_recuperados.id_course_types%>">
+                                    <%= tipos_cursos_recuperados.name%>
                                 </option>
                                 <% }) %>
                         </select>
@@ -50,19 +50,21 @@
                     </div>
                     <br>
                     <label for="">E-mail</label>
-                    <input type="email" name="email" id="">
+                    <input type="email" name="email" id="email">
                     <label for="">CPF</label>
-                    <input type="text" name="cpf" id="cpf ">
+                    <input type="text" name="cpf" id="cpf">
                     <label for="">Data de Nascimento</label>
-                    <input type="date" value="" name="nascimento" id="nascimento">
+                    <input type="date" value="" name="birthdate" id="birthdate">
                     <label for="">Telefone</label>
-                    <input type="text" name="telefone" id="telefone">
+                    <input type="text" name="phone" id="phone">
                     <label for="">Instituição</label>
-                    <input type="text" name="instituicao" id="instituicao">
+                    <input type="text" name="institution" id="institution">
                     <label for="">Cidade</label>
-                    <input type="text" name="cidade" id="cidade">
+                    <input type="text" name="city" id="city">
+                    <label for="">Matricula</label>
+                    <input type="text" name="matriculation" id="matriculation">
                     <label for="">Senha</label>
-                    <input type="password" name="senha" id="senha">
+                    <input type="password" name="password_hash" id="password_hash">
                     <label for="">Repita a Senha</label>
                     <input type="password" name="" id="">
 
@@ -94,9 +96,10 @@
                         data.cursos_recuperados.forEach(item => {
                             let option = document.createElement('option')
 
-                            option.innerHTML= item.curso
-                            option.value = item.curso
-                            option.id = item.id_curso
+                            option.innerHTML= item.name_course
+                            option.value = item.id_courses
+                            option.id = item.id_courses
+                            console.log(option.id)
 
                              //console.log(option.value, "-", option.id)
 
@@ -110,7 +113,7 @@
         });
     
         select_curso.addEventListener('change', e => {
-            console.log(select_curso.value)
+            console.log(select_curso.id)
         })
     </script>
 
