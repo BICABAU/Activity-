@@ -13,23 +13,28 @@
 
 <body>
     <section class="container_mostrar">
-        <% certificado.forEach(function(certificado){ %>
+
+        <div class="div_font">
+            <div class="button_sair">
+                <a href="/extensao">
+                    <i class='bx bx-arrow-back'></i> <span>Voltar</span>
+                </a>
+            </div>
+            <br> <br> <br>
+
             <div class="div_font">
                 <div class="background_mostrar_atividades">
-                    <div>
-                        <span>Tipo de Atividade: <%=certificado.tipo_de_atividade %></span>
-                    </div>
-                    <div>
-                        <span>Divisão: <%=certificado.categoria_atividade %></span>
-                    </div>
                     <div>
                         <span>Nome: <%=certificado.name%></span>
                     </div>
                     <div>
-                        <span>Quantidade de Horas contabilizadas: <%=certificado.qtd_horas%> horas</span>
+                        <span>Descrição: <%=certificado.description %></span>
                     </div>
                     <div>
-                        <span>Tamanho do Documento: <%=certificado.tamanho %> kbs</span>
+                        <span>Quantidade de Horas contabilizadas: <%=certificado.amount_valid_hours%> horas</span>
+                    </div>
+                    <div>
+                        <span>Tamanho do Documento: <%=certificado.size %> kbs</span>
                     </div>
                 </div>
                 <br>
@@ -38,13 +43,9 @@
                         <i class='bx bx-trash-alt'></i> <span>Deletar</span>
                     </a>
                 </div>
-                <div class="button_sair">
-                    <a href="/atividadesComplementares">
-                        <i class='bx bx-arrow-back'></i> <span>Voltar</span>
-                    </a>
-                </div>
+
             </div>
-            <% }); %>
+
     </section>
 </body>
 

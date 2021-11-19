@@ -41,14 +41,14 @@ exports.estatisticas = function (req, res) {
 }
 
 exports.perfilDoAluno = function (req, res) {
-    let user = new User(req.session.user)
+    let user = new User(req.session.user);
     user.readByEmail().then((results) => {
-        res.render('pages/perfilDoAluno', { user_info: results })
+        if (req.session.user) {
+            res.render('pages/perfilDoAluno', { user_info: results })
+        } else {
+            res.render('pages/perfilDoAluno')
+        }
     })
-        .catch((err) => {
-            res.send(err)
-        })
-
 }
 
 exports.alterarDados = function (req, res) {

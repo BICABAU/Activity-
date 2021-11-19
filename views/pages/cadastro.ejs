@@ -27,14 +27,15 @@
                     <input type="text" name="last_name" id="last_name">
 
                     <div class="select-group">
-    
+
                         <!--Tipo de curso-->
                         <label for="">Tipo de Curso</label>
                         <br>
                         <select name="tipo_curso" id="tipo_curso">
                             <option value="" selected disabled hidden>Escolha aqui</option>
-                            <% tipos_cursos_recuperados.forEach(tipos_cursos_recuperados => { %>
-                                <option value="<%= tipos_cursos_recuperados.id_course_types%>" id="<%= tipos_cursos_recuperados.id_course_types%>">
+                            <% tipos_cursos_recuperados.forEach(tipos_cursos_recuperados=> { %>
+                                <option value="<%= tipos_cursos_recuperados.id_course_types%>"
+                                    id="<%= tipos_cursos_recuperados.id_course_types%>">
                                     <%= tipos_cursos_recuperados.name%>
                                 </option>
                                 <% }) %>
@@ -65,8 +66,6 @@
                     <input type="text" name="matriculation" id="matriculation">
                     <label for="">Senha</label>
                     <input type="password" name="password_hash" id="password_hash">
-                    <label for="">Repita a Senha</label>
-                    <input type="password" name="" id="">
 
                 </div>
                 <div class="btn-group">
@@ -80,12 +79,12 @@
         const select_tipo_curso = document.getElementById('tipo_curso');
         const select_curso = document.getElementById('curso');
 
-        select_tipo_curso.addEventListener('change', (e)=> {
+        select_tipo_curso.addEventListener('change', (e) => {
             let value = select_tipo_curso.value;
             console.log(value)
 
             // Limpa as OPTIONS do SELECT de curso antes de reatribuir novos cursos
-            while(select_curso.firstChild) {
+            while (select_curso.firstChild) {
                 select_curso.removeChild(select_curso.firstChild)
             }
 
@@ -96,22 +95,22 @@
                         data.cursos_recuperados.forEach(item => {
                             let option = document.createElement('option')
 
-                            option.innerHTML= item.name_course
+                            option.innerHTML = item.name_course
                             option.value = item.id_courses
                             option.id = item.id_courses
                             console.log(option.id)
 
-                             //console.log(option.value, "-", option.id)
+                            //console.log(option.value, "-", option.id)
 
-                            select_curso.appendChild(option)            
+                            select_curso.appendChild(option)
                         })
                     })
-                    
+
                 })
                 .catch(err => console.log(err));
-                
+
         });
-    
+
         select_curso.addEventListener('change', e => {
             console.log(select_curso.id)
         })
