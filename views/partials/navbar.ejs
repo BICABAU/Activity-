@@ -40,13 +40,6 @@
         <li>
             <a href="estatisticas">Estatisticas</a>
         </li>
-        <li>
-            <a href="ranking">Ranking</a>
-        </li>
-        <li>
-            <a href="missoes">Missões</a>
-        </li>
-
 
         <div class="linha"></div>
         <div id="hours">
@@ -54,14 +47,18 @@
                 <br><br>
                 <span>Horas registradas em ACs: </span>
                 <p>
-                    <span id="acs_view"><%= user.horas_acs %></span> horas
+                    <span id="acs_view">
+                        <%= user.horas_acs %>
+                    </span> horas
                 </p>
             </div>
             <br><br>
             <div class="sidenav-horas" id="extension_activity">
                 <span>Horas registradas em AEs: </span>
                 <p>
-                    <span id="aes_view"><%= user.horas_aes %></span> horas
+                    <span id="aes_view">
+                        <%= user.horas_aes %>
+                    </span> horas
                 </p>
                 <br><br>
             </div>
