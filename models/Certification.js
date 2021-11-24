@@ -67,8 +67,8 @@ Certification.prototype.hoursValidation = function (
 
   const { email } = searchedUser;
 
-  if (amount_hours < hours_per_instance) {
-    throw new Error('A quantidade de horas da atividade não é o suficiente');
+  if (amount_hours > hours_per_instance) {
+    throw new Error('A quantidade de horas da atividade passou do limite');
   }
 
   var values, amount_valid_hours;
