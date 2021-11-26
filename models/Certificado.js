@@ -104,7 +104,7 @@ Certificado.prototype.readAllAEs = function (resultado) {
 }
 
 Certificado.prototype.readAll = function () {
-    const consulta = "select certifications.name, certifications.description, certifications.activity_start, certifications.activity_end, certifications.amount_hours ,activity_types.name_subcategory, activity_types.name_category  from uploaded_certifications join certifications on (id_uploaded = id) join activities on(certifications.id_activity = activities.id_activities) join activity_types on(activities.id_type = activity_types.id_activity_types) join users on(certifications.id_user_fk = users.id_user) where users.email = $1"
+    const consulta = "select certifications.name, certifications.description, certifications.activity_start, certifications.activity_end, certifications.amount_hours ,certifications.amount_valid_hours,activity_types.name_subcategory, activity_types.name_category  from uploaded_certifications join certifications on (id_uploaded = id) join activities on(certifications.id_activity = activities.id_activities) join activity_types on(activities.id_type = activity_types.id_activity_types) join users on(certifications.id_user_fk = users.id_user) where users.email = $1"
     const values = [this.email]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
@@ -119,7 +119,7 @@ Certificado.prototype.readAll = function () {
 }
 
 Certificado.prototype.readOneById = function (id_certificado) {
-    const consulta = "select * from uploaded_certifications join certifications on (id = $1)";
+    const consulta = "select * from uploaded_certifications inner join certifications on (id = id_uploaded) where id_uploaded = $1";
     const values = [id_certificado]
     return new Promise((resolve, reject) => {
         pool.query(consulta, values, (error, results) => {
