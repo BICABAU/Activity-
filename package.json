@@ -29,10 +29,16 @@
     "sentry": "^0.1.2",
     "uuid": "^8.3.2"
   },
-  "repository": "git+https://github.com/cesagoncalves/IFPI-PROJETO-INTEGRADOR.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesagoncalves/IFPI-PROJETO-INTEGRADOR.git"
+  },
   "bugs": {
     "url": "https://github.com/cesagoncalves/IFPI-PROJETO-INTEGRADOR/issues"
   },
   "homepage": "https://github.com/cesagoncalves/IFPI-PROJETO-INTEGRADOR#readme",
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
+  },
   "description": ""
 }

@@ -126,10 +126,8 @@ Certificado.prototype.readOneById = function (id_certificado) {
             if (error) {
                 reject("Erro ao recuperar os certificados!" + error)
             } else {
-                resultado = results.rows
-                console.log(resultado)
+                resultado = results.rows[0]
                 resolve(resultado);
-
             }
         });
     });
