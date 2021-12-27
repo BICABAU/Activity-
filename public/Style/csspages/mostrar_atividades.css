@@ -31,6 +31,24 @@
     border-radius: 20px;
 }
 
+.button_baixar{
+  
+    margin: 10px 0px 0px 160px;
+    border: solid 2px black;
+    align-items: center;
+    width: 30%;
+    padding: 10px 0px 0px 0px;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.button_baixar a{
+    text-decoration: none;
+    color: black;
+}
+
+
 .button_sair{
     margin: 10px 0px 0px 160px;
     
